@@ -7,6 +7,7 @@ class_name Player extends CharacterBody3D
 @export var GRAVITY: Vector3 = Vector3.DOWN * 12
 @export var ACCELERATION: float = 1
 @export var SPRINT_ACCELERATION: float = .7
+@export var JUMP_VEL: float = 5.5
 
 @export_group("Camera Settings")
 @export var CAMERA_TILT_LIMIT: float = deg_to_rad(88)
@@ -21,7 +22,7 @@ class_name Player extends CharacterBody3D
 @export_group("Nodes")
 @export var HEAD: Node3D
 @export var CAMERA: Camera3D
-
+@export var PLAYER_STATE_MACHINE: StateMachine
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -82,5 +83,8 @@ func handle_movement_input(speed: float, acceleration: float) -> void:
 
 func update_movement(delta) -> void:
 	if not is_on_floor():
-		velocity += GRAVITY * delta
+		if PLAYER_STATE_MACHINE.current_state.name == "FallingPlayerState":
+			velocity += 1.5 * GRAVITY * delta
+		else:
+			velocity += GRAVITY * delta
 	move_and_slide()

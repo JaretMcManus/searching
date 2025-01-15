@@ -12,10 +12,11 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rn5nb"]
 
-[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA")]
+[node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA", "PLAYER_STATE_MACHINE")]
 script = ExtResource("1_wvpu6")
 HEAD = NodePath("Head")
 CAMERA = NodePath("Head/Camera3D")
+PLAYER_STATE_MACHINE = NodePath("PlayerStateMachine")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_rn5nb")

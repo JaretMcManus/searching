@@ -1,10 +1,9 @@
 class_name JumpingPlayerState extends PlayerMovementState
 
-@export var JUMP_VEL: float = 5
 
 func enter_state(_previous_state: StringName) -> void:
 	Global.debug_print("Entering Jumping State")
-	PLAYER.velocity.y += JUMP_VEL
+	PLAYER.velocity.y += PLAYER.JUMP_VEL
 
 
 func exit_state(_next_state: StringName) -> void:
