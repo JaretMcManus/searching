@@ -1,13 +1,12 @@
-class_name WalkingPlayerState extends PlayerMovementState
+class_name SprintingPlayerState extends PlayerMovementState
 
-@export var SPEED: float = 7.5
 
 func enter_state(_previous_state: StringName) -> void:
-	Global.debug_print("Entering Walking State")
+	Global.debug_print("Entering Sprinting State")
 
 
 func exit_state(_next_state: StringName) -> void:
-	Global.debug_print("Exiting Walking State")
+	Global.debug_print("Exiting Sprinting State")
 
 
 func handle_input() -> void:
@@ -19,7 +18,7 @@ func update_state(_delta: float) -> void:
 
 
 func physics_update_state(delta: float) -> void:
-	PLAYER.handle_movement_input(PLAYER.WALK_SPEED, PLAYER.ACCELERATION)
+	PLAYER.handle_movement_input(PLAYER.SPRINT_SPEED, PLAYER.SPRINT_ACCELERATION)
 	PLAYER.update_movement(delta)
 	
 	if not PLAYER.is_on_floor():
@@ -28,8 +27,8 @@ func physics_update_state(delta: float) -> void:
 		transition.emit("JumpingPlayerState")
 	elif PLAYER.velocity.length() <= 0.0:
 		transition.emit("IdlingPlayerState")
-	elif Input.is_action_pressed("sprint"):
-		transition.emit("SprintingPlayerState")
+	elif Input.is_action_just_released("sprint"):
+		transition.emit("WalkingPlayerState")
 	elif PLAYER.velocity.length() > 0.0:
 		pass #stay in walking
 	else:

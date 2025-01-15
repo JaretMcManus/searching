@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dx21ojfl2pyrv"]
+[gd_scene load_steps=11 format=3 uid="uid://dx21ojfl2pyrv"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_wvpu6"]
 [ext_resource type="Script" path="res://scripts/state/state_machine.gd" id="2_6u0nw"]
@@ -8,12 +8,12 @@
 [ext_resource type="Script" path="res://scripts/state/PlayerMovement/falling_player_state.gd" id="5_mlym0"]
 [ext_resource type="Script" path="res://scripts/state/PlayerMovement/jumping_player_state.gd" id="5_w2w28"]
 [ext_resource type="Theme" uid="uid://bmnxaq3a5i4xd" path="res://themes/debug.tres" id="6_13pem"]
+[ext_resource type="Script" path="res://scripts/state/PlayerMovement/sprinting_player_state.gd" id="7_3w8rq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rn5nb"]
 
 [node name="Player" type="CharacterBody3D" node_paths=PackedStringArray("HEAD", "CAMERA")]
 script = ExtResource("1_wvpu6")
-WALK_SPEED = 14.0
 HEAD = NodePath("Head")
 CAMERA = NodePath("Head/Camera3D")
 
@@ -42,6 +42,9 @@ script = ExtResource("5_mlym0")
 
 [node name="JumpingPlayerState" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_w2w28")
+
+[node name="SprintingPlayerState" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("7_3w8rq")
 
 [node name="UI" type="Control" parent="."]
 layout_mode = 3

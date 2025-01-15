@@ -16,7 +16,7 @@ func update_state(_delta: float) -> void:
 
 
 func physics_update_state(delta: float) -> void:
-	PLAYER.handle_movement_input()
+	PLAYER.handle_movement_input(PLAYER.WALK_SPEED, PLAYER.ACCELERATION)
 	PLAYER.update_movement(delta)
 	
 	var velocity_length = PLAYER.velocity.length()
